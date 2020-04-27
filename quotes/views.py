@@ -24,6 +24,12 @@ def home(request):
 def about(request):
 	return render(request, 'about.html', {})
 
+def sign_in(request):
+	return render(request, 'sign_in.html', {})
+
+def sign_up(request):
+	return render(request, 'sign_up.html', {})
+
 
 def add_stock(request):
 	import requests
