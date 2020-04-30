@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+ 
+{% load static %}
+
+ </head>
+  <body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+   <img class="d-block mx-auto mb-4" src="{% static '/quotes/images/logos.jpg' %}" alt="" width="72" height="72">
+    <h2>Sign up for Virtual Market</h2>
+    <p class="lead">Begin your adventure with the stock market, its time to show everyone you know what your talking about.</p>
+  </div>
+  <div class="content-section">
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Join Today</legend>
+        {{ form|crispy }}
+    </fieldset>
+      <div class="form-group">
+          <button class="btn btn-outline-info" 
+          type="submit">Sign Up</button>
+    </div>
+  </form>
+  <div class="border-top pt-3">
+    <small class="text-muted">
+      'Already Have An Account? <a class="ml-2" href="{% url 'login'  %}">Sign In</a>
+    </small>
+  </div>
+</div>
+
+{% endblock %}

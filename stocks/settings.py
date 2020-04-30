@@ -25,19 +25,22 @@ SECRET_KEY = 'jp+4pjwhpz+aqcm_daz%sg3!u7@l4vj3%%h#i^0c1fok%n@*k!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'rest_framework',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'quotes',
+    'users.apps.UsersConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +122,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#MEDIA_URL = '/images/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),
+    )
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'home'
+
+LOGIN_URL = 'login'

@@ -1,4 +1,6 @@
 
+{% load static %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,6 +18,7 @@
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <a class="navbar-brand" href="{% url 'home' %}">Vitrual Market</a>
+  <img src="{% static '/quotes/images/logos.jpg' %}">  &nbsp;&nbsp;&nbsp;
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -37,20 +40,29 @@
 
     </ul>
 
-    <form method="get" action="{% url 'sign_in' %}"><button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Sign in</button></form> &nbsp; &nbsp; 
+    {% if user.is_authenticated %}
 
-    <form method="get" action="{% url 'sign_up' %}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up</button></form> &nbsp; &nbsp; 
+    <form method="get" action="{% url 'profile' %}"><button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Portfolio</button></form> &nbsp; &nbsp; 
+
+    <form method="get" action="{% url 'logout' %}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button></form> &nbsp; &nbsp; 
 
 
+    {% else %}
+
+      <form method="get" action="{% url 'login' %}"><button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Sign in</button></form> &nbsp; &nbsp; 
+
+      <form method="get" action="{% url 'register' %}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up</button></form> &nbsp; &nbsp; 
+    {% endif %}
+<!-- 
     <form action="{% url 'home' %}" class="form-inline my-2 my-lg-0" method="POST">
         {% csrf_token %}
       <input class="form-control mr-sm-2" type="search" placeholder="Get Stock Quote" aria-label="Search" name="ticker">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Up</button>
     </form>
-  </div>
+ -->  </div>
 </nav>
 
-  <div class="container">
+  <div class="container-fluid">
     <br/>
     {% if messages %}
       {% for message in messages %}
@@ -67,7 +79,56 @@
     {% block content %}
    	{% endblock %}
 
+    <footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md">
+      <img src="{% static '/quotes/images/logos.jpg' %}">
+      <small class="d-block mb-3 text-muted">&copy; 2017-2019</small>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Features</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Cool stuff</a></li>
+        <li><a class="text-muted" href="#">Random feature</a></li>
+        <li><a class="text-muted" href="#">Team feature</a></li>
+        <li><a class="text-muted" href="#">Stuff for developers</a></li>
+        <li><a class="text-muted" href="#">Another one</a></li>
+        <li><a class="text-muted" href="#">Last time</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Resources</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Resource</a></li>
+        <li><a class="text-muted" href="#">Resource name</a></li>
+        <li><a class="text-muted" href="#">Another resource</a></li>
+        <li><a class="text-muted" href="#">Final resource</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Resources</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Business</a></li>
+        <li><a class="text-muted" href="#">Education</a></li>
+        <li><a class="text-muted" href="#">Government</a></li>
+        <li><a class="text-muted" href="#">Gaming</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>About</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Team</a></li>
+        <li><a class="text-muted" href="#">Locations</a></li>
+        <li><a class="text-muted" href="#">Privacy</a></li>
+        <li><a class="text-muted" href="#">Terms</a></li>
+      </ul>
+    </div>
   </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
+</html>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
