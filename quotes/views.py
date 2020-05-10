@@ -88,6 +88,9 @@ def home(request):
 def about(request):
 	return render(request, 'about.html', {})
 
+def stock_page(request):
+	return render(request, 'about.html', {})
+
 
 def add_stock(request):
 	import requests
